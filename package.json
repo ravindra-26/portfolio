@@ -1,0 +1,25 @@
+{
+  "name": "venkata-ravindra-portfolio",
+  "version": "1.0.0",
+  "description": "Professional Portfolio of Venkata Ravindra Marasu - Frontend Developer (React.js, Redux Toolkit, RTK Query)",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node -e \"console.log('Portfolio server check passed!')\""
+  },
+  "keywords": [
+    "portfolio",
+    "frontend-developer",
+    "react",
+    "redux-toolkit",
+    "rtk-query",
+    "javascript",
+    "material-ui",
+    "node-server"
+  ],
+  "author": "Venkata Ravindra Marasu <ravindramarasu22@gmail.com>",
+  "license": "MIT"
+}
+

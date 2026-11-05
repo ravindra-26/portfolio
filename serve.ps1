@@ -1,27 +1,26 @@
-$port = 8000
-$listener = New-Object System.Net.HttpListener
-$listener.Prefixes.Add("http://localhost:${port}/")
-try {
+# PowerShell launcher for Venkata Ravindra Marasu's Portfolio Server
+Write-Host "==========================================================" -ForegroundColor Cyan
+Write-Host " Venkata Ravindra Marasu - Portfolio Node.js Server" -ForegroundColor Green
+Write-Host "==========================================================" -ForegroundColor Cyan
+
+if (Get-Command node -ErrorAction SilentlyContinue) {
+    Write-Host "Starting Node.js server (server.js)..." -ForegroundColor Yellow
+    node server.js
+} else {
+    Write-Host "Node.js not detected in PATH, using fallback PowerShell HTTP listener on port 3000..." -ForegroundColor Yellow
+    $port = 3000
+    $listener = New-Object System.Net.HttpListener
+    $listener.Prefixes.Add("http://localhost:${port}/")
     $listener.Start()
-    Write-Host "Server started on http://localhost:${port}/"
-} catch {
-    Write-Host "Failed to start listener: $_"
-    exit 1
-}
+    Write-Host "Server running at http://localhost:${port}/" -ForegroundColor Green
+    $folder = $PSScriptRoot
 
-$folder = $PSScriptRoot
-
-while ($listener.IsListening) {
-    try {
+    while ($listener.IsListening) {
         $context = $listener.GetContext()
         $request = $context.Request
         $response = $context.Response
-
         $localPath = $request.Url.LocalPath.TrimStart('/')
-        if ([string]::IsNullOrEmpty($localPath)) {
-            $localPath = "index.html"
-        }
-
+        if ([string]::IsNullOrEmpty($localPath)) { $localPath = "index.html" }
         $filePath = Join-Path $folder $localPath
         if (Test-Path $filePath -PathType Leaf) {
             $bytes = [System.IO.File]::ReadAllBytes($filePath)
@@ -30,10 +29,11 @@ while ($listener.IsListening) {
                 ".html" { "text/html; charset=utf-8" }
                 ".css"  { "text/css; charset=utf-8" }
                 ".js"   { "application/javascript; charset=utf-8" }
+                ".svg"  { "image/svg+xml" }
                 ".jpeg" { "image/jpeg" }
                 ".jpg"  { "image/jpeg" }
                 ".png"  { "image/png" }
-                ".svg"  { "image/svg+xml" }
+                ".json" { "application/json; charset=utf-8" }
                 default { "application/octet-stream" }
             }
             $response.ContentType = $contentType
@@ -45,7 +45,5 @@ while ($listener.IsListening) {
             $response.OutputStream.Write($notFound, 0, $notFound.Length)
         }
         $response.OutputStream.Close()
-    } catch {
-        # ignore client disconnects
     }
 }

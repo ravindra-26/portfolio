@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="glow-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.2" />
+    </linearGradient>
+    <linearGradient id="badge-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background Circle -->
+  <rect width="400" height="400" rx="200" fill="url(#bg-grad)" />
+  
+  <!-- Subtle Grid Pattern in Background -->
+  <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="6 6" />
+  <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+
+  <!-- Stylized React Orbit Rings Behind Avatar -->
+  <ellipse cx="200" cy="180" rx="140" ry="50" fill="none" stroke="#61dafb" stroke-width="2.5" opacity="0.35" transform="rotate(-30 200 180)" />
+  <ellipse cx="200" cy="180" rx="140" ry="50" fill="none" stroke="#61dafb" stroke-width="2.5" opacity="0.35" transform="rotate(30 200 180)" />
+
+  <!-- Developer Silhouette / Stylized Avatar Body -->
+  <g filter="url(#shadow)">
+    <!-- Shoulders & Torso -->
+    <path d="M 100 370 C 100 300, 140 270, 200 270 C 260 270, 300 300, 300 370 Z" fill="#0f172a" />
+    <!-- Modern Tech Hoodie / Collar -->
+    <path d="M 150 275 L 200 325 L 250 275 C 240 268, 220 265, 200 265 C 180 265, 160 268, 150 275 Z" fill="#2563eb" opacity="0.9" />
+    
+    <!-- Neck -->
+    <rect x="182" y="220" width="36" height="55" rx="10" fill="#fcd34d" />
+    
+    <!-- Head -->
+    <circle cx="200" cy="180" r="62" fill="#fcd34d" />
+    
+    <!-- Professional Hair -->
+    <path d="M 136 175 C 136 115, 165 110, 200 110 C 235 110, 264 115, 264 175 C 264 150, 250 130, 200 130 C 150 130, 138 150, 136 175 Z" fill="#1e293b" />
+    
+    <!-- Glasses (Smart Developer Look) -->
+    <rect x="156" y="165" width="36" height="24" rx="6" fill="none" stroke="#0f172a" stroke-width="4" />
+    <rect x="208" y="165" width="36" height="24" rx="6" fill="none" stroke="#0f172a" stroke-width="4" />
+    <line x1="192" y1="175" x2="208" y2="175" stroke="#0f172a" stroke-width="4" />
+    <!-- Glasses Lens Glare -->
+    <line x1="162" y1="170" x2="178" y2="182" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+    <line x1="214" y1="170" x2="230" y2="182" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+
+    <!-- Confident Smile -->
+    <path d="M 188 205 Q 200 216 212 205" fill="none" stroke="#78350f" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- React & Redux Floating Icons -->
+  <g transform="translate(48, 80)">
+    <circle cx="24" cy="24" r="24" fill="#0f172a" filter="url(#shadow)" />
+    <!-- React Logo -->
+    <ellipse cx="24" cy="24" rx="16" ry="6" fill="none" stroke="#61dafb" stroke-width="1.8" />
+    <ellipse cx="24" cy="24" rx="16" ry="6" fill="none" stroke="#61dafb" stroke-width="1.8" transform="rotate(60 24 24)" />
+    <ellipse cx="24" cy="24" rx="16" ry="6" fill="none" stroke="#61dafb" stroke-width="1.8" transform="rotate(120 24 24)" />
+    <circle cx="24" cy="24" r="3" fill="#61dafb" />
+  </g>
+
+  <!-- Redux Floating Logo -->
+  <g transform="translate(305, 80)">
+    <circle cx="24" cy="24" r="24" fill="#0f172a" filter="url(#shadow)" />
+    <!-- Redux Loop -->
+    <circle cx="24" cy="24" r="14" fill="none" stroke="#764abc" stroke-width="2.5" />
+    <circle cx="18" cy="20" r="3" fill="#764abc" />
+    <circle cx="30" cy="20" r="3" fill="#764abc" />
+    <circle cx="24" cy="29" r="3" fill="#764abc" />
+  </g>
+
+  <!-- Bottom Floating Badge with Initials & Role -->
+  <g transform="translate(110, 325)" filter="url(#shadow)">
+    <rect width="180" height="48" rx="24" fill="url(#badge-grad)" stroke="#38bdf8" stroke-width="2" />
+    <text x="90" y="24" fill="#f8fafc" font-family="'Inter', sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1">RAVINDRA MARASU</text>
+    <text x="90" y="40" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">REACT DEVELOPER</text>
+  </g>
+</svg>
+

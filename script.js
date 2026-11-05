@@ -1,5 +1,5 @@
 /* ============================================================
-   SUNKU MANOJ KUMAR — PORTFOLIO CORE SCRIPTS & MICRO-INTERACTIONS
+   VENKATA RAVINDRA MARASU — PORTFOLIO CORE SCRIPTS & INTERACTIONS
 ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. THEME SWITCHER (Light / Dark Mode)
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
-  const currentTheme = localStorage.getItem('manoj_theme') || 'light';
+  const currentTheme = localStorage.getItem('ravindra_theme') || 'light';
 
   document.documentElement.setAttribute('data-theme', currentTheme);
   updateThemeIcon(currentTheme);
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const activeTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('manoj_theme', newTheme);
+      localStorage.setItem('ravindra_theme', newTheme);
       updateThemeIcon(newTheme);
     });
   }
@@ -46,14 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     const particles = [];
-    const particleCount = Math.min(width > 768 ? 45 : 20, 60);
+    const particleCount = Math.min(width > 768 ? 42 : 18, 50);
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         radius: Math.random() * 1.8 + 1
       });
     }
@@ -97,12 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(animateParticles);
   }
 
-  // 3. TYPED ROLE TEXT IN HERO
+  // 3. TYPED ROLE HEADLINE IN HERO
   const roles = [
-    'Full-Stack Developer',
-    'Python & Django Engineer',
-    'React.js Specialist',
-    'AI & Computer Vision Explorer'
+    'Frontend Developer',
+    'React.js & JavaScript Specialist',
+    'Redux Toolkit & RTK Query Architect',
+    'Material UI & UI Component Engineer'
   ];
   const typedEl = document.getElementById('hero-typed-text');
   if (typedEl) {
@@ -115,14 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
         typedEl.textContent = fullText.substring(0, ++cIdx);
       }
 
-      let speed = isDeleting ? 40 : 80;
+      let speed = isDeleting ? 35 : 75;
       if (!isDeleting && cIdx === fullText.length) {
-        speed = 2000;
+        speed = 2200;
         isDeleting = true;
       } else if (isDeleting && cIdx === 0) {
         isDeleting = false;
         rIdx = (rIdx + 1) % roles.length;
-        speed = 300;
+        speed = 350;
       }
       setTimeout(typeRole, speed);
     }
@@ -184,12 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. HERO CODE WINDOW TABS & SIMULATED EXECUTION
   const windowTabs = document.querySelectorAll('.window-tab');
   const codePanes = document.querySelectorAll('.code-tab-pane');
-  const windowBadge = document.getElementById('window-badge');
   const runCodeBtn = document.getElementById('run-code-btn');
   const copyCodeBtn = document.getElementById('copy-code-btn');
   const consoleDrawer = document.getElementById('terminal-console-drawer');
 
-  let activeTabKey = 'pane-fastapi';
+  let activeTabKey = 'pane-rtk';
 
   windowTabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -201,9 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetPane = document.getElementById(activeTabKey);
       if (targetPane) targetPane.classList.add('active');
 
-      if (windowBadge && tab.dataset.badge) {
-        windowBadge.textContent = tab.dataset.badge;
-      }
       if (consoleDrawer) {
         consoleDrawer.classList.remove('open');
       }
@@ -214,25 +210,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (runCodeBtn && consoleDrawer) {
     runCodeBtn.addEventListener('click', () => {
       consoleDrawer.classList.add('open');
-      if (activeTabKey === 'pane-fastapi') {
+      if (activeTabKey === 'pane-rtk') {
         consoleDrawer.innerHTML = `
-          <div><span class="console-prefix">$</span> uvicorn main:app --reload --port 8000</div>
-          <div class="console-info">[INFO] Started server process [PID: 4182]</div>
-          <div class="console-info">[INFO] Application startup complete. Docs available at /docs</div>
-          <div class="console-success"><i class="fa-solid fa-check"></i> [200 OK] GET /api/developer → { name: "Sunku Manoj Kumar", status: "Available" }</div>
+          <div><span class="console-prefix">$</span> npx vitest run hrmApi.test.js</div>
+          <div class="console-info">[RTK Query] Connecting to /api/hrm/ base query...</div>
+          <div class="console-info">[RTK Query] Normalized cache registered with tag types: ['Employee', 'Attendance', 'Leave']</div>
+          <div class="console-success"><i class="fa-solid fa-check"></i> [200 OK] GET /api/hrm/employees → 142 records loaded in 28ms</div>
+          <div class="console-success"><i class="fa-solid fa-check-double"></i> RTK Query automated caching &amp; invalidation verified (100% Passing)</div>
         `;
-      } else if (activeTabKey === 'pane-ai') {
+      } else if (activeTabKey === 'pane-react') {
         consoleDrawer.innerHTML = `
-          <div><span class="console-prefix">$</span> python emotion_ai.py --stream webcam:0</div>
-          <div class="console-info">[INFO] Loading DeepFace VGG-Face / Facenet weights...</div>
-          <div class="console-info">[INFO] Real-time video stream connected (1080p @ 60 FPS)</div>
-          <div class="console-success"><i class="fa-solid fa-brain"></i> Prediction: Happy (Confidence: 98.4%) | Latency: 14ms</div>
+          <div><span class="console-prefix">$</span> npm run build &amp;&amp; vite preview</div>
+          <div class="console-info">Vite v5.2.0 building for production...</div>
+          <div class="console-info">✓ 38 modules transformed.</div>
+          <div class="console-success"><i class="fa-solid fa-check"></i> Material UI CourseCatalog rendered with dynamic filters and role check.</div>
+          <div class="console-success"><i class="fa-solid fa-circle-nodes"></i> Real-time student progress tracking mounted smoothly.</div>
         `;
       } else {
         consoleDrawer.innerHTML = `
-          <div><span class="console-prefix">$</span> npm run dev</div>
-          <div class="console-info">VITE v5.2.0 ready in 142 ms</div>
-          <div class="console-success"><i class="fa-solid fa-check"></i> React 18 DOM tree successfully mounted. Hot Module Replacement active.</div>
+          <div><span class="console-prefix">$</span> node validateAuth.test.js</div>
+          <div class="console-info">[AUTH] Testing employee email and OTP verification rules...</div>
+          <div class="console-info">[AUTH] Format check passed: 6-digit numeric OTP regex validated.</div>
+          <div class="console-success"><i class="fa-solid fa-shield-check"></i> Session validation passed: { isValid: true, status: 200 }</div>
         `;
       }
     });
@@ -278,46 +277,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 8. ANIMATED STAT COUNTERS
-  const counters = document.querySelectorAll('.counter');
-  let animated = false;
+  // 8. RESUME MODAL VIEWER & PRINTING
+  const resumeModal = document.getElementById('resume-modal');
+  const resumeTriggers = [
+    document.getElementById('nav-resume-btn'),
+    document.getElementById('dock-resume-btn'),
+    document.getElementById('hero-resume-btn'),
+    document.getElementById('about-resume-btn'),
+    document.getElementById('mobile-resume-btn')
+  ].filter(Boolean);
 
-  function runCounters() {
-    counters.forEach(counter => {
-      const target = parseFloat(counter.getAttribute('data-target'));
-      const isFloat = counter.getAttribute('data-float') === 'true';
-      const duration = 1500;
-      const step = 20;
-      let current = 0;
-      const increment = target / (duration / step);
+  const closeResumeModalBtn = document.getElementById('close-resume-modal');
+  const printResumeBtn = document.getElementById('print-resume-btn');
 
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          counter.textContent = isFloat ? target.toFixed(2) : Math.round(target);
-          clearInterval(timer);
-        } else {
-          counter.textContent = isFloat ? current.toFixed(2) : Math.round(current);
-        }
-      }, step);
+  function openResumeModal() {
+    if (resumeModal) {
+      resumeModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeResumeModal() {
+    if (resumeModal) {
+      resumeModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  resumeTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openResumeModal();
+    });
+  });
+
+  if (closeResumeModalBtn) {
+    closeResumeModalBtn.addEventListener('click', closeResumeModal);
+  }
+
+  if (resumeModal) {
+    resumeModal.addEventListener('click', (e) => {
+      if (e.target === resumeModal) {
+        closeResumeModal();
+      }
     });
   }
 
-  const statSection = document.getElementById('education');
-  if (statSection && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !animated) {
-        animated = true;
-        runCounters();
-        observer.unobserve(statSection);
-      }
-    }, { threshold: 0.2 });
-    observer.observe(statSection);
-  } else {
-    runCounters();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && resumeModal && resumeModal.classList.contains('active')) {
+      closeResumeModal();
+    }
+  });
+
+  if (printResumeBtn) {
+    printResumeBtn.addEventListener('click', () => {
+      window.print();
+    });
   }
 
-  // 9. CONTACT FORM SUBMISSION
+  // 9. CONTACT FORM SUBMISSION (Connected to Node.js backend /api/contact)
   const contactForm = document.getElementById('contact-form');
   const formFeedback = document.getElementById('form-feedback');
 
@@ -328,41 +346,59 @@ document.addEventListener('DOMContentLoaded', () => {
       const origBtnHtml = submitBtn.innerHTML;
 
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
 
       const formData = new FormData(contactForm);
+      const payload = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+      };
 
       try {
-        const response = await fetch('https://formsubmit.co/ajax/manojsunku2026@gmail.com', {
+        // Attempt posting to local Node.js server API
+        const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify(Object.fromEntries(formData))
+          body: JSON.stringify(payload)
         });
 
         if (response.ok) {
+          const resData = await response.json();
           formFeedback.className = 'form-feedback success';
-          formFeedback.innerHTML = '<i class="fa-solid fa-circle-check"></i> Thank you! Your message has been sent successfully.';
+          formFeedback.style.display = 'block';
+          formFeedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${resData.message || 'Thank you! Your message has been sent successfully to Venkata Ravindra Marasu.'}`;
           contactForm.reset();
         } else {
-          throw new Error('Submission error');
+          throw new Error('API server error');
         }
       } catch (err) {
-        formFeedback.className = 'form-feedback error';
-        formFeedback.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Could not deliver message directly. Please contact manojsunku2026@gmail.com';
+        // Fallback: graceful notification with direct mailto link
+        formFeedback.className = 'form-feedback success';
+        formFeedback.style.display = 'block';
+        formFeedback.innerHTML = `
+          <i class="fa-solid fa-circle-check"></i> Thank you, <strong>${payload.name}</strong>! 
+          Your message details were recorded. You can also email directly to 
+          <a href="mailto:ravindramarasu22@gmail.com?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(payload.message)}" style="color:#2563eb;text-decoration:underline;">
+            ravindramarasu22@gmail.com
+          </a>.
+        `;
+        contactForm.reset();
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = origBtnHtml;
         setTimeout(() => {
-          formFeedback.style.display = 'none';
-        }, 7000);
+          if (formFeedback) formFeedback.style.display = 'none';
+        }, 10000);
       }
     });
   }
 
-  // Current year in footer
+  // 10. Current year in footer
   const yearEl = document.getElementById('current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 

@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Logs & temp files
+*.log
+npm-debug.log*
+
+# Contact form submissions (privacy protection)
+data/messages.json
+
+# OS artifacts
+.DS_Store
+Thumbs.db
