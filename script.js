@@ -266,9 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const filter = btn.dataset.filter;
+      const filter = (btn.dataset.filter || 'all').toLowerCase();
       projectCards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
+        const categories = (card.dataset.category || '').toLowerCase().split(/\s+/);
+        if (filter === 'all' || categories.includes(filter)) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';

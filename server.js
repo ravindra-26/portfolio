@@ -132,6 +132,70 @@ const RESUME_DATA = {
       "Search & Filtering"
     ]
   },
+  projects: [
+    {
+      name: "Real-Time Face Emotion Detector",
+      category: "AI & Computer Vision",
+      technologies: ["Python", "Django", "OpenCV", "DeepFace", "TensorFlow"],
+      githubUrl: "https://github.com/ravindra-26/face-emotion-detector",
+      description: "Deep learning facial emotion recognition system analyzing live video feeds using CNNs and OpenCV."
+    },
+    {
+      name: "AI Image-to-Telugu Translator & OCR",
+      category: "AI Vision & OCR",
+      technologies: ["JavaScript", "Tesseract.js", "HTML5", "CSS3", "REST API"],
+      githubUrl: "https://github.com/ravindra-26/Image_Translator",
+      description: "Client-side neural OCR and real-time translation tool converting English text from photos into Telugu."
+    },
+    {
+      name: "Cryptographic Random Password Generator",
+      category: "Security & Python",
+      technologies: ["Python", "Flask", "Secrets Module", "REST API", "HTML5/CSS3"],
+      githubUrl: "https://github.com/ravindra-26/random-password-generator",
+      description: "Full-stack cybersecurity tool utilizing secrets pseudo-random generation with algorithmic entropy scoring."
+    },
+    {
+      name: "Enterprise HRM (Human Resource Management)",
+      category: "Enterprise Commercial",
+      technologies: ["React.js", "Redux Toolkit", "RTK Query", "Material UI", "REST APIs"],
+      description: "Commercial human capital management platform covering onboarding, attendance, leave approvals, and role management."
+    },
+    {
+      name: "Enterprise LMS (Learning Management System)",
+      category: "Enterprise Commercial",
+      technologies: ["React.js", "Material UI", "RTK Query", "REST APIs", "CSS3"],
+      description: "Scalable corporate e-learning platform with course catalogs, syllabus manager, and student tracking."
+    },
+    {
+      name: "Student Information & Academic Portal",
+      category: "Academic Portal",
+      technologies: ["Bootstrap 5", "JavaScript DOM", "JSON Data Store", "HTML5/CSS3"],
+      githubUrl: "https://github.com/ravindra-26/info_studentes",
+      description: "Responsive student records management portal with dynamic JSON data binding and search filtering."
+    },
+    {
+      name: "Employee Payroll & Salary Calculation Dashboard",
+      category: "FinTech & Data Grids",
+      technologies: ["JavaScript", "HTML5 Tables", "CSS3 Grid", "Math Engine"],
+      githubUrl: "https://github.com/ravindra-26/salary_table",
+      description: "Interactive payroll compensation calculator with dynamic DOM edits and automatic tax/allowance computations."
+    },
+    {
+      name: "Interactive Registration & Authentication Suite",
+      category: "Frontend UI/UX",
+      technologies: ["HTML5 Forms", "CSS3 Animations", "JavaScript", "Regex Validation"],
+      githubUrl: "https://github.com/ravindra-26/sign_up",
+      description: "Polished multi-step authentication interface featuring real-time regex field validation and password toggles."
+    },
+    {
+      name: "Personal Developer Portfolio & Live Server",
+      category: "Full-Stack Portfolio",
+      technologies: ["JavaScript", "HTML5", "CSS3", "Node.js", "GitHub Pages"],
+      githubUrl: "https://github.com/ravindra-26/portfolio",
+      liveUrl: "https://ravindra-26.github.io/portfolio/",
+      description: "Lightweight, responsive developer portfolio with theme persistence, live terminal drawer, and GitHub Pages deployment."
+    }
+  ],
   strengths: [
     "Quick learner with strong problem-solving skills",
     "Solid understanding of React component-based development",
@@ -242,6 +306,10 @@ const server = http.createServer(async (req, res) => {
 
   if (pathname === '/api/experience' && req.method === 'GET') {
     return sendJSON(res, 200, RESUME_DATA.experience);
+  }
+
+  if (pathname === '/api/projects' && req.method === 'GET') {
+    return sendJSON(res, 200, RESUME_DATA.projects);
   }
 
   if (pathname === '/api/health' && req.method === 'GET') {
@@ -402,6 +470,7 @@ server.listen(PORT, () => {
   console.log(`      GET  http://localhost:${PORT}/api/profile`);
   console.log(`      GET  http://localhost:${PORT}/api/skills`);
   console.log(`      GET  http://localhost:${PORT}/api/experience`);
+  console.log(`      GET  http://localhost:${PORT}/api/projects`);
   console.log(`      GET  http://localhost:${PORT}/api/health`);
   console.log(`      POST http://localhost:${PORT}/api/contact`);
   console.log(divider + '\n');
