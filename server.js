@@ -52,6 +52,7 @@ const RESUME_DATA = {
     whatsapp: "https://wa.me/917995709151",
     linkedin: "https://www.linkedin.com/in/ravindra-chowdary-2a84622bb",
     github: "https://github.com/ravindra-26",
+    portfolio: "https://ravindra-26.github.io/portfolio/",
     summary: "Frontend Developer with 1+ year of professional experience building and maintaining web applications using React.js and JavaScript. Hands-on experience with HRM and LMS applications, reusable components, responsive UI development, and REST API integration using Redux Toolkit and RTK Query. Strong foundation in form validation, authentication workflows, CRUD operations, and application state management, with a good understanding of backend API integration."
   },
   experience: [
